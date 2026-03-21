@@ -12,7 +12,10 @@ Managers can visually build a week's schedule via drag-and-drop and see labor co
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Role-based auth (Manager, Supervisor, Employee) — Phase 1
+- ✓ Employee profiles (name, roles, hourly rate, max hours/week) — Phase 1
+- ✓ Employee availability grid — Phase 1
+- ✓ Realistic demo data (Urban Threads, 12 employees, 3 demo accounts) — Phase 1
 
 ### Active
 
@@ -79,4 +82,4 @@ Managers can visually build a week's schedule via drag-and-drop and see labor co
 | shadcn/ui | Professional components, customizable, Tailwind-native | — Pending |
 
 ---
-*Last updated: 2026-03-21 after initialization*
+*Last updated: 2026-03-21 after Phase 1 completion*
