@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Project scaffold, database schema, auth (NextAuth v5 + JWT), login page, seed data (12 employees + 3 demo accounts)
+- [x] 01-01-PLAN.md — Project scaffold, database schema, auth (NextAuth v5 + JWT), login page, seed data (12 employees + 3 demo accounts)
 - [ ] 01-02-PLAN.md — App shell (sidebar, header, mobile nav) and employee list page with sortable table and role badges
 - [ ] 01-03-PLAN.md — Employee CRUD (slide-over panel), availability toggle grid, placeholder pages
 
@@ -91,7 +91,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation and Employee Management | 0/3 | Planning complete | - |
+| 1. Foundation and Employee Management | 1/3 | Executing | - |
 | 2. Schedule Builder and Cost Meter | 0/3 | Not started | - |
 | 3. Shift Swaps and Compliance | 0/2 | Not started | - |
 | 4. Dashboards and Polish | 0/2 | Not started | - |

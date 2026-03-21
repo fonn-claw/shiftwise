@@ -9,11 +9,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Authentication & Authorization
 
-- [ ] **AUTH-01**: User can log in with email and password (credentials provider)
-- [ ] **AUTH-02**: User session persists across browser refresh (JWT strategy)
-- [ ] **AUTH-03**: User can log out from any page
-- [ ] **AUTH-04**: Role-based access control enforced (Manager, Supervisor, Employee)
-- [ ] **AUTH-05**: Manager can access all features; Supervisor can view schedules and approve swaps; Employee can view own schedule and request swaps
+- [x] **AUTH-01**: User can log in with email and password (credentials provider)
+- [x] **AUTH-02**: User session persists across browser refresh (JWT strategy)
+- [x] **AUTH-03**: User can log out from any page
+- [x] **AUTH-04**: Role-based access control enforced (Manager, Supervisor, Employee)
+- [x] **AUTH-05**: Manager can access all features; Supervisor can view schedules and approve swaps; Employee can view own schedule and request swaps
 
 ### Employee Management
 
@@ -72,13 +72,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Demo Data
 
-- [ ] **DEMO-01**: Seed data creates Urban Threads store (9 AM - 9 PM, 7 days, $12K/week budget)
-- [ ] **DEMO-02**: 12 employees seeded with roles, rates, max hours, and availability per BRIEF spec
+- [x] **DEMO-01**: Seed data creates Urban Threads store (9 AM - 9 PM, 7 days, $12K/week budget)
+- [x] **DEMO-02**: 12 employees seeded with roles, rates, max hours, and availability per BRIEF spec
 - [ ] **DEMO-03**: Current week fully scheduled with realistic shift patterns
 - [ ] **DEMO-04**: One employee (Jake) near overtime threshold (38 hrs)
 - [ ] **DEMO-05**: One open shift needing coverage (Thursday PM cashier)
 - [ ] **DEMO-06**: One pending swap request (Ana <-> Carlos, Friday)
-- [ ] **DEMO-07**: Three demo accounts seeded (manager, supervisor, employee)
+- [x] **DEMO-07**: Three demo accounts seeded (manager, supervisor, employee)
 
 ## v2 Requirements
 
@@ -115,11 +115,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | Phase 1 | Pending |
-| AUTH-02 | Phase 1 | Pending |
-| AUTH-03 | Phase 1 | Pending |
-| AUTH-04 | Phase 1 | Pending |
-| AUTH-05 | Phase 1 | Pending |
+| AUTH-01 | Phase 1 | Complete |
+| AUTH-02 | Phase 1 | Complete |
+| AUTH-03 | Phase 1 | Complete |
+| AUTH-04 | Phase 1 | Complete |
+| AUTH-05 | Phase 1 | Complete |
 | EMPL-01 | Phase 1 | Pending |
 | EMPL-02 | Phase 1 | Pending |
 | EMPL-03 | Phase 1 | Pending |
@@ -157,13 +157,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DASH-01 | Phase 4 | Pending |
 | DASH-02 | Phase 4 | Pending |
 | DASH-03 | Phase 4 | Pending |
-| DEMO-01 | Phase 1 | Pending |
-| DEMO-02 | Phase 1 | Pending |
+| DEMO-01 | Phase 1 | Complete |
+| DEMO-02 | Phase 1 | Complete |
 | DEMO-03 | Phase 2 | Pending |
 | DEMO-04 | Phase 2 | Pending |
 | DEMO-05 | Phase 3 | Pending |
 | DEMO-06 | Phase 3 | Pending |
-| DEMO-07 | Phase 1 | Pending |
+| DEMO-07 | Phase 1 | Complete |
 
 **Coverage:**
 - v1 requirements: 42 total
