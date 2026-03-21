@@ -46,12 +46,12 @@ Plans:
   3. Sidebar cost meter displays total hours, total cost, budget percentage, and daily breakdown -- all updating instantly as shifts change
   4. Overtime indicators turn amber at 35 hours and red at 40 hours per employee, with per-employee hours visible
   5. Manager can navigate between weeks and copy a previous week's schedule as a starting point
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
-- [ ] 02-03: TBD
+- [ ] 02-01-PLAN.md — Shifts schema, cost calculator + schedule helpers with tests, DAL, server actions, seed data with full schedule
+- [ ] 02-02-PLAN.md — Schedule grid UI (employee rows x day columns), shift cards, shift create/edit/delete dialog, cost meter sidebar with budget chart
+- [ ] 02-03-PLAN.md — Drag-and-drop with @dnd-kit/react, week navigation (prev/next), copy previous week
 
 ### Phase 3: Shift Swaps and Compliance
 **Goal**: Employees can request shift swaps and pick up open shifts, while managers get compliance warnings and an audit trail
