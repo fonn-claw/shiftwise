@@ -1,0 +1,127 @@
+# Requirements: ShiftWise Pro
+
+**Defined:** 2026-03-21
+**Core Value:** Managers can visually build a week's schedule via drag-and-drop and see labor costs update in real-time, with overtime alerts and compliance warnings preventing costly mistakes.
+
+## v1 Requirements
+
+Requirements for initial release. Each maps to roadmap phases.
+
+### Authentication & Authorization
+
+- [ ] **AUTH-01**: User can log in with email and password (credentials provider)
+- [ ] **AUTH-02**: User session persists across browser refresh (JWT strategy)
+- [ ] **AUTH-03**: User can log out from any page
+- [ ] **AUTH-04**: Role-based access control enforced (Manager, Supervisor, Employee)
+- [ ] **AUTH-05**: Manager can access all features; Supervisor can view schedules and approve swaps; Employee can view own schedule and request swaps
+
+### Employee Management
+
+- [ ] **EMPL-01**: Manager can view list of all employees with roles, rates, and availability
+- [ ] **EMPL-02**: Manager can create new employee profiles (name, email, roles, hourly rate, max hours/week, contact info)
+- [ ] **EMPL-03**: Manager can edit employee profiles
+- [ ] **EMPL-04**: Employee can set their availability (available days/times)
+- [ ] **EMPL-05**: Manager can view employee availability when scheduling
+- [ ] **EMPL-06**: Employees can have multiple roles (e.g., Cashier + Stock)
+
+### Schedule Builder
+
+- [ ] **SCHED-01**: Manager can view weekly calendar grid (rows = employees, columns = days)
+- [ ] **SCHED-02**: Manager can click to create a shift (start time, end time, role, break duration)
+- [ ] **SCHED-03**: Manager can edit an existing shift
+- [ ] **SCHED-04**: Manager can delete a shift
+- [ ] **SCHED-05**: Manager can drag-and-drop shifts to reassign to different employees or days
+- [ ] **SCHED-06**: Shifts are color-coded by role (cashier = blue, stock = green, manager = orange, visual merch = purple)
+- [ ] **SCHED-07**: Schedule conflicts highlighted when employee is unavailable (red cell)
+- [ ] **SCHED-08**: Manager can navigate between weeks
+- [ ] **SCHED-09**: Manager can copy previous week's schedule as starting point
+
+### Labor Cost Meter
+
+- [ ] **COST-01**: Sidebar widget displays total scheduled hours for the week
+- [ ] **COST-02**: Sidebar displays total labor cost ($) for the week
+- [ ] **COST-03**: Sidebar displays labor cost as percentage of revenue budget
+- [ ] **COST-04**: Cost meter updates in real-time as shifts are added, moved, or removed
+- [ ] **COST-05**: Overtime indicator turns amber at 35hrs/employee, red at 40hrs
+- [ ] **COST-06**: Daily cost breakdown displayed (Monday $X, Tuesday $Y, etc.)
+- [ ] **COST-07**: Weekly total vs budget bar chart
+- [ ] **COST-08**: Per-employee hours tracker visible during scheduling
+
+### Shift Coverage & Swaps
+
+- [ ] **SWAP-01**: Manager can mark shifts as "open" (needing coverage)
+- [ ] **SWAP-02**: Open shift board displays all unassigned shifts
+- [ ] **SWAP-03**: Employee can request to pick up an open shift
+- [ ] **SWAP-04**: Employee can request a shift swap with another employee
+- [ ] **SWAP-05**: Manager/Supervisor can approve or reject swap requests with one click
+- [ ] **SWAP-06**: System auto-rejects swap if it would create overtime or coverage gap
+- [ ] **SWAP-07**: Swap request shows details (who, what shifts, impact on hours)
+
+### Compliance
+
+- [ ] **COMP-01**: Dashboard shows predictive scheduling compliance status
+- [ ] **COMP-02**: Warning displayed when schedule is posted less than required notice period (7/14 days configurable)
+- [ ] **COMP-03**: Premium pay calculator shows cost of last-minute schedule changes
+- [ ] **COMP-04**: Audit log records all schedule changes with timestamps and who made them
+
+### Team Dashboard
+
+- [ ] **DASH-01**: Today's view shows who's working now, who's coming in next, who called out
+- [ ] **DASH-02**: Week overview shows total hours per employee with overtime risk flags
+- [ ] **DASH-03**: Historical labor cost trends chart (last 4 weeks)
+
+### Demo Data
+
+- [ ] **DEMO-01**: Seed data creates Urban Threads store (9 AM - 9 PM, 7 days, $12K/week budget)
+- [ ] **DEMO-02**: 12 employees seeded with roles, rates, max hours, and availability per BRIEF spec
+- [ ] **DEMO-03**: Current week fully scheduled with realistic shift patterns
+- [ ] **DEMO-04**: One employee (Jake) near overtime threshold (38 hrs)
+- [ ] **DEMO-05**: One open shift needing coverage (Thursday PM cashier)
+- [ ] **DEMO-06**: One pending swap request (Ana ↔ Carlos, Friday)
+- [ ] **DEMO-07**: Three demo accounts seeded (manager, supervisor, employee)
+
+## v2 Requirements
+
+Deferred to future release. Tracked but not in current roadmap.
+
+### Notifications
+
+- **NOTF-01**: In-app notification for swap request updates
+- **NOTF-02**: In-app notification for schedule changes
+- **NOTF-03**: Notification preferences per user
+
+### Advanced Scheduling
+
+- **ADVS-01**: Auto-schedule suggestions based on availability and roles
+- **ADVS-02**: Template schedules (save and apply patterns)
+- **ADVS-03**: Multi-location support
+
+## Out of Scope
+
+| Feature | Reason |
+|---------|--------|
+| POS integration | Mock revenue forecast data instead |
+| SMS/push notifications | Show notification UI but don't send real messages |
+| Geofenced clock-in/out | Not building a time clock |
+| Payroll export | Just show the data |
+| Multi-location support | Single store for demo |
+| Real predictive scheduling law database | Hardcode a sample rule set |
+| AI/auto-scheduling | Massive engineering effort, manual scheduling with copy-week is more impressive for demo |
+| Real-time collaboration (WebSockets) | Single-manager demo, not needed |
+
+## Traceability
+
+Which phases cover which requirements. Updated during roadmap creation.
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| (populated during roadmap creation) | | |
+
+**Coverage:**
+- v1 requirements: 42 total
+- Mapped to phases: 0
+- Unmapped: 42 ⚠️
+
+---
+*Requirements defined: 2026-03-21*
+*Last updated: 2026-03-21 after initial definition*
