@@ -18,9 +18,9 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Employee Management
 
 - [x] **EMPL-01**: Manager can view list of all employees with roles, rates, and availability
-- [ ] **EMPL-02**: Manager can create new employee profiles (name, email, roles, hourly rate, max hours/week, contact info)
-- [ ] **EMPL-03**: Manager can edit employee profiles
-- [ ] **EMPL-04**: Employee can set their availability (available days/times)
+- [x] **EMPL-02**: Manager can create new employee profiles (name, email, roles, hourly rate, max hours/week, contact info)
+- [x] **EMPL-03**: Manager can edit employee profiles
+- [x] **EMPL-04**: Employee can set their availability (available days/times)
 - [x] **EMPL-05**: Manager can view employee availability when scheduling
 - [x] **EMPL-06**: Employees can have multiple roles (e.g., Cashier + Stock)
 
@@ -121,9 +121,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AUTH-04 | Phase 1 | Complete |
 | AUTH-05 | Phase 1 | Complete |
 | EMPL-01 | Phase 1 | Complete |
-| EMPL-02 | Phase 1 | Pending |
-| EMPL-03 | Phase 1 | Pending |
-| EMPL-04 | Phase 1 | Pending |
+| EMPL-02 | Phase 1 | Complete |
+| EMPL-03 | Phase 1 | Complete |
+| EMPL-04 | Phase 1 | Complete |
 | EMPL-05 | Phase 1 | Complete |
 | EMPL-06 | Phase 1 | Complete |
 | SCHED-01 | Phase 2 | Pending |
