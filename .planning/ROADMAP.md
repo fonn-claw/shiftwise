@@ -29,11 +29,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Manager can create and edit employee profiles with name, roles, rate, max hours, and contact info
   4. Employee can set their own availability (available days and time windows)
   5. User can log out from any page and session persists across browser refresh
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md — Project scaffold, database schema, auth (NextAuth v5 + JWT), login page, seed data (12 employees + 3 demo accounts)
+- [ ] 01-02-PLAN.md — App shell (sidebar, header, mobile nav) and employee list page with sortable table and role badges
+- [ ] 01-03-PLAN.md — Employee CRUD (slide-over panel), availability toggle grid, placeholder pages
 
 ### Phase 2: Schedule Builder and Cost Meter
 **Goal**: Managers can visually build a weekly schedule with drag-and-drop and see labor costs update in real-time
@@ -90,7 +91,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation and Employee Management | 0/2 | Not started | - |
+| 1. Foundation and Employee Management | 0/3 | Planning complete | - |
 | 2. Schedule Builder and Cost Meter | 0/3 | Not started | - |
 | 3. Shift Swaps and Compliance | 0/2 | Not started | - |
 | 4. Dashboards and Polish | 0/2 | Not started | - |
