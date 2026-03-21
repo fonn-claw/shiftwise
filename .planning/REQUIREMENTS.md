@@ -77,7 +77,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **DEMO-03**: Current week fully scheduled with realistic shift patterns
 - [ ] **DEMO-04**: One employee (Jake) near overtime threshold (38 hrs)
 - [ ] **DEMO-05**: One open shift needing coverage (Thursday PM cashier)
-- [ ] **DEMO-06**: One pending swap request (Ana ↔ Carlos, Friday)
+- [ ] **DEMO-06**: One pending swap request (Ana <-> Carlos, Friday)
 - [ ] **DEMO-07**: Three demo accounts seeded (manager, supervisor, employee)
 
 ## v2 Requirements
@@ -115,13 +115,61 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (populated during roadmap creation) | | |
+| AUTH-01 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Pending |
+| AUTH-03 | Phase 1 | Pending |
+| AUTH-04 | Phase 1 | Pending |
+| AUTH-05 | Phase 1 | Pending |
+| EMPL-01 | Phase 1 | Pending |
+| EMPL-02 | Phase 1 | Pending |
+| EMPL-03 | Phase 1 | Pending |
+| EMPL-04 | Phase 1 | Pending |
+| EMPL-05 | Phase 1 | Pending |
+| EMPL-06 | Phase 1 | Pending |
+| SCHED-01 | Phase 2 | Pending |
+| SCHED-02 | Phase 2 | Pending |
+| SCHED-03 | Phase 2 | Pending |
+| SCHED-04 | Phase 2 | Pending |
+| SCHED-05 | Phase 2 | Pending |
+| SCHED-06 | Phase 2 | Pending |
+| SCHED-07 | Phase 2 | Pending |
+| SCHED-08 | Phase 2 | Pending |
+| SCHED-09 | Phase 2 | Pending |
+| COST-01 | Phase 2 | Pending |
+| COST-02 | Phase 2 | Pending |
+| COST-03 | Phase 2 | Pending |
+| COST-04 | Phase 2 | Pending |
+| COST-05 | Phase 2 | Pending |
+| COST-06 | Phase 2 | Pending |
+| COST-07 | Phase 2 | Pending |
+| COST-08 | Phase 2 | Pending |
+| SWAP-01 | Phase 3 | Pending |
+| SWAP-02 | Phase 3 | Pending |
+| SWAP-03 | Phase 3 | Pending |
+| SWAP-04 | Phase 3 | Pending |
+| SWAP-05 | Phase 3 | Pending |
+| SWAP-06 | Phase 3 | Pending |
+| SWAP-07 | Phase 3 | Pending |
+| COMP-01 | Phase 3 | Pending |
+| COMP-02 | Phase 3 | Pending |
+| COMP-03 | Phase 3 | Pending |
+| COMP-04 | Phase 3 | Pending |
+| DASH-01 | Phase 4 | Pending |
+| DASH-02 | Phase 4 | Pending |
+| DASH-03 | Phase 4 | Pending |
+| DEMO-01 | Phase 1 | Pending |
+| DEMO-02 | Phase 1 | Pending |
+| DEMO-03 | Phase 2 | Pending |
+| DEMO-04 | Phase 2 | Pending |
+| DEMO-05 | Phase 3 | Pending |
+| DEMO-06 | Phase 3 | Pending |
+| DEMO-07 | Phase 1 | Pending |
 
 **Coverage:**
 - v1 requirements: 42 total
-- Mapped to phases: 0
-- Unmapped: 42 ⚠️
+- Mapped to phases: 42
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-21*
-*Last updated: 2026-03-21 after initial definition*
+*Last updated: 2026-03-21 after roadmap creation*
