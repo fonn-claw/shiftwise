@@ -17,12 +17,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Employee Management
 
-- [ ] **EMPL-01**: Manager can view list of all employees with roles, rates, and availability
+- [x] **EMPL-01**: Manager can view list of all employees with roles, rates, and availability
 - [ ] **EMPL-02**: Manager can create new employee profiles (name, email, roles, hourly rate, max hours/week, contact info)
 - [ ] **EMPL-03**: Manager can edit employee profiles
 - [ ] **EMPL-04**: Employee can set their availability (available days/times)
-- [ ] **EMPL-05**: Manager can view employee availability when scheduling
-- [ ] **EMPL-06**: Employees can have multiple roles (e.g., Cashier + Stock)
+- [x] **EMPL-05**: Manager can view employee availability when scheduling
+- [x] **EMPL-06**: Employees can have multiple roles (e.g., Cashier + Stock)
 
 ### Schedule Builder
 
@@ -120,12 +120,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AUTH-03 | Phase 1 | Complete |
 | AUTH-04 | Phase 1 | Complete |
 | AUTH-05 | Phase 1 | Complete |
-| EMPL-01 | Phase 1 | Pending |
+| EMPL-01 | Phase 1 | Complete |
 | EMPL-02 | Phase 1 | Pending |
 | EMPL-03 | Phase 1 | Pending |
 | EMPL-04 | Phase 1 | Pending |
-| EMPL-05 | Phase 1 | Pending |
-| EMPL-06 | Phase 1 | Pending |
+| EMPL-05 | Phase 1 | Complete |
+| EMPL-06 | Phase 1 | Complete |
 | SCHED-01 | Phase 2 | Pending |
 | SCHED-02 | Phase 2 | Pending |
 | SCHED-03 | Phase 2 | Pending |
