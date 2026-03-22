@@ -27,23 +27,23 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Schedule Builder
 
 - [ ] **SCHED-01**: Manager can view weekly calendar grid (rows = employees, columns = days)
-- [ ] **SCHED-02**: Manager can click to create a shift (start time, end time, role, break duration)
-- [ ] **SCHED-03**: Manager can edit an existing shift
-- [ ] **SCHED-04**: Manager can delete a shift
+- [x] **SCHED-02**: Manager can click to create a shift (start time, end time, role, break duration)
+- [x] **SCHED-03**: Manager can edit an existing shift
+- [x] **SCHED-04**: Manager can delete a shift
 - [ ] **SCHED-05**: Manager can drag-and-drop shifts to reassign to different employees or days
 - [ ] **SCHED-06**: Shifts are color-coded by role (cashier = blue, stock = green, manager = orange, visual merch = purple)
-- [ ] **SCHED-07**: Schedule conflicts highlighted when employee is unavailable (red cell)
-- [ ] **SCHED-08**: Manager can navigate between weeks
+- [x] **SCHED-07**: Schedule conflicts highlighted when employee is unavailable (red cell)
+- [x] **SCHED-08**: Manager can navigate between weeks
 - [ ] **SCHED-09**: Manager can copy previous week's schedule as starting point
 
 ### Labor Cost Meter
 
-- [ ] **COST-01**: Sidebar widget displays total scheduled hours for the week
-- [ ] **COST-02**: Sidebar displays total labor cost ($) for the week
-- [ ] **COST-03**: Sidebar displays labor cost as percentage of revenue budget
-- [ ] **COST-04**: Cost meter updates in real-time as shifts are added, moved, or removed
-- [ ] **COST-05**: Overtime indicator turns amber at 35hrs/employee, red at 40hrs
-- [ ] **COST-06**: Daily cost breakdown displayed (Monday $X, Tuesday $Y, etc.)
+- [x] **COST-01**: Sidebar widget displays total scheduled hours for the week
+- [x] **COST-02**: Sidebar displays total labor cost ($) for the week
+- [x] **COST-03**: Sidebar displays labor cost as percentage of revenue budget
+- [x] **COST-04**: Cost meter updates in real-time as shifts are added, moved, or removed
+- [x] **COST-05**: Overtime indicator turns amber at 35hrs/employee, red at 40hrs
+- [x] **COST-06**: Daily cost breakdown displayed (Monday $X, Tuesday $Y, etc.)
 - [ ] **COST-07**: Weekly total vs budget bar chart
 - [ ] **COST-08**: Per-employee hours tracker visible during scheduling
 
@@ -74,8 +74,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **DEMO-01**: Seed data creates Urban Threads store (9 AM - 9 PM, 7 days, $12K/week budget)
 - [x] **DEMO-02**: 12 employees seeded with roles, rates, max hours, and availability per BRIEF spec
-- [ ] **DEMO-03**: Current week fully scheduled with realistic shift patterns
-- [ ] **DEMO-04**: One employee (Jake) near overtime threshold (38 hrs)
+- [x] **DEMO-03**: Current week fully scheduled with realistic shift patterns
+- [x] **DEMO-04**: One employee (Jake) near overtime threshold (38 hrs)
 - [ ] **DEMO-05**: One open shift needing coverage (Thursday PM cashier)
 - [ ] **DEMO-06**: One pending swap request (Ana <-> Carlos, Friday)
 - [x] **DEMO-07**: Three demo accounts seeded (manager, supervisor, employee)
@@ -127,20 +127,20 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EMPL-05 | Phase 1 | Complete |
 | EMPL-06 | Phase 1 | Complete |
 | SCHED-01 | Phase 2 | Pending |
-| SCHED-02 | Phase 2 | Pending |
-| SCHED-03 | Phase 2 | Pending |
-| SCHED-04 | Phase 2 | Pending |
+| SCHED-02 | Phase 2 | Complete |
+| SCHED-03 | Phase 2 | Complete |
+| SCHED-04 | Phase 2 | Complete |
 | SCHED-05 | Phase 2 | Pending |
 | SCHED-06 | Phase 2 | Pending |
-| SCHED-07 | Phase 2 | Pending |
-| SCHED-08 | Phase 2 | Pending |
+| SCHED-07 | Phase 2 | Complete |
+| SCHED-08 | Phase 2 | Complete |
 | SCHED-09 | Phase 2 | Pending |
-| COST-01 | Phase 2 | Pending |
-| COST-02 | Phase 2 | Pending |
-| COST-03 | Phase 2 | Pending |
-| COST-04 | Phase 2 | Pending |
-| COST-05 | Phase 2 | Pending |
-| COST-06 | Phase 2 | Pending |
+| COST-01 | Phase 2 | Complete |
+| COST-02 | Phase 2 | Complete |
+| COST-03 | Phase 2 | Complete |
+| COST-04 | Phase 2 | Complete |
+| COST-05 | Phase 2 | Complete |
+| COST-06 | Phase 2 | Complete |
 | COST-07 | Phase 2 | Pending |
 | COST-08 | Phase 2 | Pending |
 | SWAP-01 | Phase 3 | Pending |
@@ -159,8 +159,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DASH-03 | Phase 4 | Pending |
 | DEMO-01 | Phase 1 | Complete |
 | DEMO-02 | Phase 1 | Complete |
-| DEMO-03 | Phase 2 | Pending |
-| DEMO-04 | Phase 2 | Pending |
+| DEMO-03 | Phase 2 | Complete |
+| DEMO-04 | Phase 2 | Complete |
 | DEMO-05 | Phase 3 | Pending |
 | DEMO-06 | Phase 3 | Pending |
 | DEMO-07 | Phase 1 | Complete |
