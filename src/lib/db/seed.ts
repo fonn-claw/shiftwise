@@ -3,7 +3,16 @@ dotenv.config({ path: ".env.local" })
 
 import { drizzle } from "drizzle-orm/neon-http"
 import { neon } from "@neondatabase/serverless"
-import { stores, users, employeeRoles, availability, shifts } from "./schema"
+import {
+  stores,
+  users,
+  employeeRoles,
+  availability,
+  shifts,
+  swapRequests,
+  shiftPickups,
+  auditLog,
+} from "./schema"
 import { addDays, startOfWeek, format } from "date-fns"
 import bcrypt from "bcryptjs"
 
@@ -152,6 +161,9 @@ async function seed() {
 
   // Clear existing data in reverse FK order
   console.log("Clearing existing data...")
+  await db.delete(auditLog)
+  await db.delete(swapRequests)
+  await db.delete(shiftPickups)
   await db.delete(shifts)
   await db.delete(availability)
   await db.delete(employeeRoles)
@@ -363,7 +375,7 @@ async function seed() {
       storeId: store.id,
     },
 
-    // Ana Morales: Mon-Thu 9:00-15:00 cashier = 24h
+    // Ana Morales: Mon-Thu 9:00-15:00 cashier = 24h + Fri 9:00-15:00 = 30h
     ...[0, 1, 2, 3].map((d) => ({
       employeeId: anaId,
       date: dateStr(d),
@@ -374,6 +386,16 @@ async function seed() {
       status: "assigned" as const,
       storeId: store.id,
     })),
+    {
+      employeeId: anaId,
+      date: dateStr(4),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "cashier" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    },
 
     // Carlos Ruiz: Mon-Fri 15:00-21:00 stock = 30h, Sat 9:00-15:00 stock = 6h. Total 36h
     ...[0, 1, 2, 3, 4].map((d) => ({
@@ -557,10 +579,47 @@ async function seed() {
     await db.insert(shifts).values(shift)
   }
 
+  // 5. Create pending swap request: Ana's Friday AM <-> Carlos's Friday PM
+  console.log("Creating swap request...")
+  const { eq, and } = await import("drizzle-orm")
+
+  const [anaFridayShift] = await db
+    .select()
+    .from(shifts)
+    .where(
+      and(
+        eq(shifts.employeeId, anaId),
+        eq(shifts.date, dateStr(4)),
+        eq(shifts.startTime, "09:00")
+      )
+    )
+
+  const [carlosFridayShift] = await db
+    .select()
+    .from(shifts)
+    .where(
+      and(
+        eq(shifts.employeeId, carlosId),
+        eq(shifts.date, dateStr(4)),
+        eq(shifts.startTime, "15:00")
+      )
+    )
+
+  if (anaFridayShift && carlosFridayShift) {
+    await db.insert(swapRequests).values({
+      requestorId: anaId,
+      requestorShiftId: anaFridayShift.id,
+      targetEmployeeId: carlosId,
+      targetShiftId: carlosFridayShift.id,
+      status: "pending",
+    })
+  }
+
   console.log("Seed complete!")
   console.log(`  - 1 store: ${store.name}`)
   console.log(`  - ${employees.length} employees`)
   console.log(`  - ${shiftData.length} shifts (${shiftData.filter((s) => s.status === "open").length} open)`)
+  console.log("  - 1 pending swap request (Ana Morales <-> Carlos Ruiz, Friday)")
   console.log("  - Demo accounts:")
   console.log("    manager@shiftwise.app / demo1234 (Sarah Chen - Manager)")
   console.log(

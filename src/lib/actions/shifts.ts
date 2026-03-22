@@ -7,6 +7,7 @@ import { shifts } from "@/lib/db/schema"
 import { eq, and, gte, lte } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 import { startOfWeek, addDays, format, differenceInDays } from "date-fns"
+import { logAuditEvent } from "./audit"
 
 const createShiftSchema = z.object({
   employeeId: z.number().nullable(),
@@ -64,6 +65,20 @@ export async function createShift(
     })
     .returning()
 
+  await logAuditEvent({
+    action: "shift.created",
+    userId: Number(session.user.id),
+    entityType: "shift",
+    entityId: newShift.id,
+    details: {
+      date: newShift.date,
+      startTime: newShift.startTime,
+      endTime: newShift.endTime,
+      roleName: newShift.roleName,
+      employeeId: newShift.employeeId,
+    },
+  })
+
   revalidatePath("/schedule")
   return { success: true, shift: newShift }
 }
@@ -100,6 +115,14 @@ export async function updateShift(
     return { success: false, message: "Shift not found" }
   }
 
+  await logAuditEvent({
+    action: "shift.updated",
+    userId: Number(session.user.id),
+    entityType: "shift",
+    entityId: shiftId,
+    details: { ...parsed.data },
+  })
+
   revalidatePath("/schedule")
   return { success: true, shift: updated }
 }
@@ -120,6 +143,14 @@ export async function deleteShift(
   if (!deleted) {
     return { success: false, message: "Shift not found" }
   }
+
+  await logAuditEvent({
+    action: "shift.deleted",
+    userId: Number(session.user.id),
+    entityType: "shift",
+    entityId: shiftId,
+    details: { date: deleted.date, employeeId: deleted.employeeId },
+  })
 
   revalidatePath("/schedule")
   return { success: true }
@@ -149,6 +180,14 @@ export async function moveShift(
   if (!updated) {
     return { success: false, message: "Shift not found" }
   }
+
+  await logAuditEvent({
+    action: "shift.moved",
+    userId: Number(session.user.id),
+    entityType: "shift",
+    entityId: shiftId,
+    details: { newEmployeeId, newDate },
+  })
 
   revalidatePath("/schedule")
   return { success: true, shift: updated }
@@ -202,6 +241,14 @@ export async function copyWeekSchedule(
   })
 
   await db.insert(shifts).values(newShifts)
+
+  await logAuditEvent({
+    action: "schedule.copied",
+    userId: Number(session.user.id),
+    entityType: "schedule",
+    entityId: null,
+    details: { sourceWeekStart, targetWeekStart, shiftCount: newShifts.length },
+  })
 
   revalidatePath("/schedule")
   return { success: true, count: newShifts.length }
