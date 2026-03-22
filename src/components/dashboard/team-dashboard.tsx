@@ -58,6 +58,13 @@ interface TeamDashboardProps {
 // Chart config
 // ---------------------------------------------------------------------------
 
+function formatTime(time: string): string {
+  const [h, m] = time.split(":").map(Number)
+  const period = h >= 12 ? "PM" : "AM"
+  const hour = h === 0 ? 12 : h > 12 ? h - 12 : h
+  return `${hour}:${m.toString().padStart(2, "0")} ${period}`
+}
+
 const costChartConfig = {
   totalCost: {
     label: "Labor Cost",
@@ -139,7 +146,7 @@ export function TeamDashboard({
         <SummaryCard
           title="Weekly Cost"
           value={`$${currentWeekCost.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`}
-          subtitle={`${budgetPercent.toFixed(0)}% of $${weeklyBudget.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 })} budget`}
+          subtitle={`${budgetPercent.toFixed(0)}% of $${(weeklyBudget / 1000).toFixed(0)}K budget`}
           icon={<DollarSign className="h-5 w-5 text-indigo-600" />}
           accent="bg-indigo-50"
         />
@@ -340,7 +347,7 @@ function TodayShiftRow({ shift }: { shift: TodayShift }) {
             {shift.employeeName}
           </p>
           <p className="text-xs text-gray-500">
-            {shift.startTime} - {shift.endTime}
+            {formatTime(shift.startTime)} - {formatTime(shift.endTime)}
           </p>
         </div>
       </div>
