@@ -6,6 +6,7 @@ import {
   timestamp,
   decimal,
   pgEnum,
+  jsonb,
 } from "drizzle-orm/pg-core"
 
 export const userRoleEnum = pgEnum("user_role", [
@@ -67,6 +68,12 @@ export const availability = pgTable("availability", {
 
 export const shiftStatusEnum = pgEnum("shift_status", ["assigned", "open"])
 
+export const swapStatusEnum = pgEnum("swap_status", [
+  "pending",
+  "approved",
+  "rejected",
+])
+
 export const shifts = pgTable("shifts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   employeeId: integer("employee_id").references(() => users.id, {
@@ -83,4 +90,50 @@ export const shifts = pgTable("shifts", {
     .references(() => stores.id),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
+})
+
+export const swapRequests = pgTable("swap_requests", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  requestorId: integer("requestor_id")
+    .notNull()
+    .references(() => users.id),
+  requestorShiftId: integer("requestor_shift_id")
+    .notNull()
+    .references(() => shifts.id),
+  targetEmployeeId: integer("target_employee_id")
+    .notNull()
+    .references(() => users.id),
+  targetShiftId: integer("target_shift_id")
+    .notNull()
+    .references(() => shifts.id),
+  status: swapStatusEnum().notNull().default("pending"),
+  reviewedBy: integer("reviewed_by").references(() => users.id),
+  reviewedAt: timestamp("reviewed_at"),
+  reason: varchar({ length: 500 }),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+})
+
+export const shiftPickups = pgTable("shift_pickups", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  shiftId: integer("shift_id")
+    .notNull()
+    .references(() => shifts.id),
+  employeeId: integer("employee_id")
+    .notNull()
+    .references(() => users.id),
+  status: swapStatusEnum().notNull().default("pending"),
+  reviewedBy: integer("reviewed_by").references(() => users.id),
+  reviewedAt: timestamp("reviewed_at"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+})
+
+export const auditLog = pgTable("audit_log", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  action: varchar({ length: 100 }).notNull(),
+  userId: integer("user_id").references(() => users.id),
+  details: jsonb().notNull().default({}),
+  entityType: varchar("entity_type", { length: 50 }).notNull(),
+  entityId: integer("entity_id"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
 })
