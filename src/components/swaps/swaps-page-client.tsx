@@ -41,7 +41,7 @@ export function SwapsPageClient({
   userId,
   employeeWeekHours = {},
 }: SwapsPageClientProps) {
-  const [openShifts, setOpenShifts] = useState(initialOpenShifts)
+  const [openShifts] = useState(initialOpenShifts)
   const [swaps, setSwaps] = useState(initialSwaps)
   const [pickups, setPickups] = useState(initialPickups)
   const [activeTab, setActiveTab] = useState<TabValue>("pending")

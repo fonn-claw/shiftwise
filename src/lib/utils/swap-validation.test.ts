@@ -17,22 +17,8 @@ function makeShift(
 
 describe("validateSwapHours", () => {
   it("rejects swap when requestor would exceed 40 hours", () => {
-    // Requestor has 38h of existing shifts, giving away 6h shift but gaining 6h shift
-    // that puts them at 38h total -- that's fine. But let's make them gain an 8h shift.
+    // Requestor has 42h, gives away 4h shift, gains 8h shift = 46h (exceeds 40h)
     const requestorShifts = [
-      // 5 shifts of 8h each = 40h total, but one is being swapped away
-      makeShift({ id: 1, employeeId: 1, startTime: "09:00", endTime: "17:00", date: "2026-03-23" }),
-      makeShift({ id: 2, employeeId: 1, startTime: "09:00", endTime: "17:00", date: "2026-03-24" }),
-      makeShift({ id: 3, employeeId: 1, startTime: "09:00", endTime: "17:00", date: "2026-03-25" }),
-      makeShift({ id: 4, employeeId: 1, startTime: "09:00", endTime: "17:00", date: "2026-03-26" }),
-      makeShift({ id: 5, employeeId: 1, startTime: "09:00", endTime: "15:00", date: "2026-03-27" }),
-    ]
-    // Requestor total = 8+8+8+8+6 = 38h
-    // Requestor gives away shift 5 (6h), gains target's shift (8h)
-    // New total = 38 - 6 + 8 = 40h -- exactly at limit, should be valid
-
-    // Let's make it exceed: requestor has 38h, gives away 4h shift, gains 8h shift = 42h
-    const requestorShifts2 = [
       makeShift({ id: 1, employeeId: 1, startTime: "09:00", endTime: "17:00", date: "2026-03-23" }),
       makeShift({ id: 2, employeeId: 1, startTime: "09:00", endTime: "17:00", date: "2026-03-24" }),
       makeShift({ id: 3, employeeId: 1, startTime: "09:00", endTime: "17:00", date: "2026-03-25" }),
@@ -49,7 +35,7 @@ describe("validateSwapHours", () => {
     ]
 
     const result = validateSwapHours({
-      requestorCurrentShifts: requestorShifts2,
+      requestorCurrentShifts: requestorShifts,
       targetCurrentShifts: targetShifts,
       requestorSwapShift,
       targetSwapShift,
