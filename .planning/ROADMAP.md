@@ -12,8 +12,8 @@ ShiftWise Pro delivers a retail staff scheduling platform in four phases. Phase 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation and Employee Management** - Auth, database schema, employee CRUD, availability, and demo seed data
-- [ ] **Phase 2: Schedule Builder and Cost Meter** - Weekly grid with drag-and-drop, shift CRUD, real-time labor cost sidebar with overtime alerts
+- [x] **Phase 1: Foundation and Employee Management** - Auth, database schema, employee CRUD, availability, and demo seed data
+- [x] **Phase 2: Schedule Builder and Cost Meter** - Weekly grid with drag-and-drop, shift CRUD, real-time labor cost sidebar with overtime alerts
 - [ ] **Phase 3: Shift Swaps and Compliance** - Open shift board, swap requests, approval workflow, compliance dashboard, audit log
 - [ ] **Phase 4: Dashboards and Polish** - Team dashboard, historical trends, mobile responsive, deployment
 
@@ -33,8 +33,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md — Project scaffold, database schema, auth (NextAuth v5 + JWT), login page, seed data (12 employees + 3 demo accounts)
-- [ ] 01-02-PLAN.md — App shell (sidebar, header, mobile nav) and employee list page with sortable table and role badges
-- [ ] 01-03-PLAN.md — Employee CRUD (slide-over panel), availability toggle grid, placeholder pages
+- [x] 01-02-PLAN.md — App shell (sidebar, header, mobile nav) and employee list page with sortable table and role badges
+- [x] 01-03-PLAN.md — Employee CRUD (slide-over panel), availability toggle grid, placeholder pages
 
 ### Phase 2: Schedule Builder and Cost Meter
 **Goal**: Managers can visually build a weekly schedule with drag-and-drop and see labor costs update in real-time
@@ -49,9 +49,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Shifts schema, cost calculator + schedule helpers with tests, DAL, server actions, seed data with full schedule
-- [ ] 02-02-PLAN.md — Schedule grid UI (employee rows x day columns), shift cards, shift create/edit/delete dialog, cost meter sidebar with budget chart
-- [ ] 02-03-PLAN.md — Drag-and-drop with @dnd-kit/react, week navigation (prev/next), copy previous week
+- [x] 02-01-PLAN.md — Shifts schema, cost calculator + schedule helpers with tests, DAL, server actions, seed data with full schedule
+- [x] 02-02-PLAN.md — Schedule grid UI (employee rows x day columns), shift cards, shift create/edit/delete dialog, cost meter sidebar with budget chart
+- [x] 02-03-PLAN.md — Drag-and-drop with @dnd-kit/react, week navigation (prev/next), copy previous week
 
 ### Phase 3: Shift Swaps and Compliance
 **Goal**: Employees can request shift swaps and pick up open shifts, while managers get compliance warnings and an audit trail
@@ -63,11 +63,12 @@ Plans:
   3. Manager or supervisor can approve/reject swap requests with one click, and swaps that would create overtime or coverage gaps are auto-rejected
   4. Compliance dashboard shows schedule posting warnings (late notice) and premium pay calculations for last-minute changes
   5. Audit log records all schedule changes with timestamps and who made them
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md — Schema extensions (swap_requests, shift_pickups, audit_log), compliance rules + swap validation with tests, audit helper, seed data extension
+- [ ] 03-02-PLAN.md — Swap/pickup DAL + server actions with auto-rejection, /swaps page UI with open shift board and swap request cards
+- [ ] 03-03-PLAN.md — Compliance DAL, /compliance page with status cards, premium pay calculator, and filterable audit log
 
 ### Phase 4: Dashboards and Polish
 **Goal**: Managers have operational visibility through dashboards and the app is polished, mobile-responsive, and deployed
@@ -91,7 +92,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation and Employee Management | 1/3 | Executing | - |
-| 2. Schedule Builder and Cost Meter | 0/3 | Not started | - |
-| 3. Shift Swaps and Compliance | 0/2 | Not started | - |
+| 1. Foundation and Employee Management | 3/3 | Complete | 2026-03-21 |
+| 2. Schedule Builder and Cost Meter | 3/3 | Complete | 2026-03-21 |
+| 3. Shift Swaps and Compliance | 0/3 | Not started | - |
 | 4. Dashboards and Polish | 0/2 | Not started | - |
