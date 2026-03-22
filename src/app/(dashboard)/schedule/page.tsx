@@ -1,15 +1,32 @@
-export default function SchedulePage() {
+import { startOfWeek, parseISO } from "date-fns"
+import { getEmployees } from "@/lib/dal/employees"
+import { getShiftsForWeek } from "@/lib/dal/shifts"
+import { getStore } from "@/lib/dal/stores"
+import { ScheduleBuilder } from "@/components/schedule/schedule-builder"
+
+export default async function SchedulePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ week?: string }>
+}) {
+  const params = await searchParams
+
+  const weekStart = params.week
+    ? startOfWeek(parseISO(params.week), { weekStartsOn: 1 })
+    : startOfWeek(new Date(), { weekStartsOn: 1 })
+
+  const [employees, shifts, store] = await Promise.all([
+    getEmployees(),
+    getShiftsForWeek(weekStart),
+    getStore(),
+  ])
+
   return (
-    <div className="space-y-4">
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900">Schedule</h2>
-        <p className="text-sm text-gray-500">
-          Weekly shift schedule
-        </p>
-      </div>
-      <div className="rounded-lg border border-gray-200 bg-white p-8 text-center text-gray-500">
-        Schedule builder coming in Phase 2
-      </div>
-    </div>
+    <ScheduleBuilder
+      employees={employees}
+      initialShifts={shifts}
+      store={store}
+      weekStart={weekStart.toISOString()}
+    />
   )
 }
