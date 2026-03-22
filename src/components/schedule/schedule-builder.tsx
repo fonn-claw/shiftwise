@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useMemo, useCallback, useEffect } from "react"
-import { format, parseISO } from "date-fns"
+import { parseISO } from "date-fns"
+import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 import { DollarSign } from "lucide-react"
 import { calculateWeekCosts } from "@/lib/utils/cost-calculator"
@@ -13,10 +14,12 @@ import {
   updateShift,
   deleteShift,
   moveShift,
+  copyWeekSchedule,
 } from "@/lib/actions/shifts"
 import { ScheduleGrid } from "./schedule-grid"
 import { CostMeterSidebar } from "./cost-meter-sidebar"
 import { ShiftDialog } from "./shift-dialog"
+import { WeekNavigator } from "./week-navigator"
 import type { EmployeeWithRoles } from "@/lib/dal/employees"
 import type { ShiftRow } from "@/lib/dal/shifts"
 import type { Store } from "@/lib/dal/stores"
@@ -43,6 +46,8 @@ export function ScheduleBuilder({
   const [prefilledEmployeeId, setPrefilledEmployeeId] = useState<number | null>(null)
   const [mobileCostOpen, setMobileCostOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [isCopying, setIsCopying] = useState(false)
+  const router = useRouter()
 
   // Detect mobile for disabling DnD
   useEffect(() => {
@@ -219,10 +224,37 @@ export function ScheduleBuilder({
     [shifts]
   )
 
+  const handleCopyWeek = useCallback(
+    async (sourceWeekStart: string, targetWeekStart: string) => {
+      setIsCopying(true)
+      try {
+        const result = await copyWeekSchedule(sourceWeekStart, targetWeekStart)
+        if (result.success) {
+          toast.success(`Copied ${result.count} shifts`)
+          router.refresh()
+        } else {
+          toast.error(result.message || "Failed to copy schedule")
+        }
+      } finally {
+        setIsCopying(false)
+      }
+    },
+    [router]
+  )
+
   const isManagerEnabled = userRole === "manager" && !isMobile
 
   return (
     <div className="space-y-4">
+      {/* Week navigation header */}
+      <WeekNavigator
+        weekStart={weekStart}
+        onCopyWeek={handleCopyWeek}
+        isManager={userRole === "manager"}
+        isCopying={isCopying}
+      />
+      <p className="text-sm text-gray-500">{store.name}</p>
+
       {/* Mobile cost summary bar */}
       <div className="lg:hidden">
         <button
