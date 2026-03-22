@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-03-22T00:07:36.864Z"
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-03-22T00:16:03.233Z"
 progress:
   total_phases: 4
   completed_phases: 1
   total_plans: 6
-  completed_plans: 4
+  completed_plans: 5
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 ## Current Position
 
 Phase: 02 (schedule-builder-and-cost-meter) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 
 ## Performance Metrics
 
@@ -49,6 +49,7 @@ Plan: 2 of 3
 | Phase 01 P02 | 3min | 2 tasks | 12 files |
 | Phase 01 P03 | 6min | 2 tasks | 7 files |
 | Phase 02 P01 | 3min | 2 tasks | 9 files |
+| Phase 02 P02 | 5min | 2 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -70,6 +71,9 @@ Recent decisions affecting current work:
 - [Phase 02]: varchar dates/times to avoid timezone issues across client/server
 - [Phase 02]: Pure functions in cost-calculator.ts for client-side real-time cost updates
 - [Phase 02]: Dynamic seed dates via date-fns relative to current Monday
+- [Phase 02]: schedule-builder.tsx as single client state owner with shifts in useState, costs derived via useMemo
+- [Phase 02]: Optimistic mutations: update state immediately, call server action, rollback on failure
+- [Phase 02]: base-ui Select onValueChange needs null coalesce wrapper (differs from Radix API)
 
 ### Pending Todos
 
@@ -82,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T00:07:36.862Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-03-22T00:15:57.583Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None

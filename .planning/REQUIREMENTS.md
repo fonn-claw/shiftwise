@@ -26,12 +26,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Schedule Builder
 
-- [ ] **SCHED-01**: Manager can view weekly calendar grid (rows = employees, columns = days)
+- [x] **SCHED-01**: Manager can view weekly calendar grid (rows = employees, columns = days)
 - [x] **SCHED-02**: Manager can click to create a shift (start time, end time, role, break duration)
 - [x] **SCHED-03**: Manager can edit an existing shift
 - [x] **SCHED-04**: Manager can delete a shift
 - [ ] **SCHED-05**: Manager can drag-and-drop shifts to reassign to different employees or days
-- [ ] **SCHED-06**: Shifts are color-coded by role (cashier = blue, stock = green, manager = orange, visual merch = purple)
+- [x] **SCHED-06**: Shifts are color-coded by role (cashier = blue, stock = green, manager = orange, visual merch = purple)
 - [x] **SCHED-07**: Schedule conflicts highlighted when employee is unavailable (red cell)
 - [x] **SCHED-08**: Manager can navigate between weeks
 - [ ] **SCHED-09**: Manager can copy previous week's schedule as starting point
@@ -44,8 +44,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **COST-04**: Cost meter updates in real-time as shifts are added, moved, or removed
 - [x] **COST-05**: Overtime indicator turns amber at 35hrs/employee, red at 40hrs
 - [x] **COST-06**: Daily cost breakdown displayed (Monday $X, Tuesday $Y, etc.)
-- [ ] **COST-07**: Weekly total vs budget bar chart
-- [ ] **COST-08**: Per-employee hours tracker visible during scheduling
+- [x] **COST-07**: Weekly total vs budget bar chart
+- [x] **COST-08**: Per-employee hours tracker visible during scheduling
 
 ### Shift Coverage & Swaps
 
@@ -126,12 +126,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EMPL-04 | Phase 1 | Complete |
 | EMPL-05 | Phase 1 | Complete |
 | EMPL-06 | Phase 1 | Complete |
-| SCHED-01 | Phase 2 | Pending |
+| SCHED-01 | Phase 2 | Complete |
 | SCHED-02 | Phase 2 | Complete |
 | SCHED-03 | Phase 2 | Complete |
 | SCHED-04 | Phase 2 | Complete |
 | SCHED-05 | Phase 2 | Pending |
-| SCHED-06 | Phase 2 | Pending |
+| SCHED-06 | Phase 2 | Complete |
 | SCHED-07 | Phase 2 | Complete |
 | SCHED-08 | Phase 2 | Complete |
 | SCHED-09 | Phase 2 | Pending |
@@ -141,8 +141,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | COST-04 | Phase 2 | Complete |
 | COST-05 | Phase 2 | Complete |
 | COST-06 | Phase 2 | Complete |
-| COST-07 | Phase 2 | Pending |
-| COST-08 | Phase 2 | Pending |
+| COST-07 | Phase 2 | Complete |
+| COST-08 | Phase 2 | Complete |
 | SWAP-01 | Phase 3 | Pending |
 | SWAP-02 | Phase 3 | Pending |
 | SWAP-03 | Phase 3 | Pending |
