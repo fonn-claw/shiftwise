@@ -94,5 +94,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Foundation and Employee Management | 3/3 | Complete | 2026-03-21 |
 | 2. Schedule Builder and Cost Meter | 3/3 | Complete | 2026-03-21 |
-| 3. Shift Swaps and Compliance | 1/3 | In Progress | - |
+| 3. Shift Swaps and Compliance | 2/3 | In Progress|  |
 | 4. Dashboards and Polish | 0/2 | Not started | - |

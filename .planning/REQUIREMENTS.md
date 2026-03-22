@@ -59,8 +59,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Compliance
 
-- [ ] **COMP-01**: Dashboard shows predictive scheduling compliance status
-- [ ] **COMP-02**: Warning displayed when schedule is posted less than required notice period (7/14 days configurable)
+- [x] **COMP-01**: Dashboard shows predictive scheduling compliance status
+- [x] **COMP-02**: Warning displayed when schedule is posted less than required notice period (7/14 days configurable)
 - [x] **COMP-03**: Premium pay calculator shows cost of last-minute schedule changes
 - [x] **COMP-04**: Audit log records all schedule changes with timestamps and who made them
 
@@ -150,8 +150,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SWAP-05 | Phase 3 | Pending |
 | SWAP-06 | Phase 3 | Complete |
 | SWAP-07 | Phase 3 | Pending |
-| COMP-01 | Phase 3 | Pending |
-| COMP-02 | Phase 3 | Pending |
+| COMP-01 | Phase 3 | Complete |
+| COMP-02 | Phase 3 | Complete |
 | COMP-03 | Phase 3 | Complete |
 | COMP-04 | Phase 3 | Complete |
 | DASH-01 | Phase 4 | Pending |
