@@ -52,6 +52,7 @@ Plan: 3 of 3
 | Phase 02 P02 | 5min | 2 tasks | 12 files |
 | Phase 02 P03 | 4min | 2 tasks | 8 files |
 | Phase 03 P01 | 4min | 2 tasks | 8 files |
+| Phase 03 P02 | 3min | 2 tasks | 7 files |
 | Phase 03 P03 | 3min | 2 tasks | 5 files |
 
 ## Accumulated Context
@@ -84,6 +85,9 @@ Recent decisions affecting current work:
 - [Phase 03]: Compliance rules as pure functions with injectable config for testability
 - [Phase 03]: Client-side filtering for audit log initial dataset
 - [Phase 03]: Premium pay calculated by comparing audit timestamps to shift start times
+- [Phase 03]: Alias-based joins for swap DAL queries (requestor+target in one query)
+- [Phase 03]: Auto-reject on approve action so managers see validation reason
+- [Phase 03]: Employee role filtering in DAL (employees only see own requests)
 
 ### Pending Todos
 

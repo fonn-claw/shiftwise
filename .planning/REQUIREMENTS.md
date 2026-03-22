@@ -49,13 +49,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Shift Coverage & Swaps
 
-- [ ] **SWAP-01**: Manager can mark shifts as "open" (needing coverage)
-- [ ] **SWAP-02**: Open shift board displays all unassigned shifts
-- [ ] **SWAP-03**: Employee can request to pick up an open shift
-- [ ] **SWAP-04**: Employee can request a shift swap with another employee
-- [ ] **SWAP-05**: Manager/Supervisor can approve or reject swap requests with one click
+- [x] **SWAP-01**: Manager can mark shifts as "open" (needing coverage)
+- [x] **SWAP-02**: Open shift board displays all unassigned shifts
+- [x] **SWAP-03**: Employee can request to pick up an open shift
+- [x] **SWAP-04**: Employee can request a shift swap with another employee
+- [x] **SWAP-05**: Manager/Supervisor can approve or reject swap requests with one click
 - [x] **SWAP-06**: System auto-rejects swap if it would create overtime or coverage gap
-- [ ] **SWAP-07**: Swap request shows details (who, what shifts, impact on hours)
+- [x] **SWAP-07**: Swap request shows details (who, what shifts, impact on hours)
 
 ### Compliance
 
@@ -143,13 +143,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | COST-06 | Phase 2 | Complete |
 | COST-07 | Phase 2 | Complete |
 | COST-08 | Phase 2 | Complete |
-| SWAP-01 | Phase 3 | Pending |
-| SWAP-02 | Phase 3 | Pending |
-| SWAP-03 | Phase 3 | Pending |
-| SWAP-04 | Phase 3 | Pending |
-| SWAP-05 | Phase 3 | Pending |
+| SWAP-01 | Phase 3 | Complete |
+| SWAP-02 | Phase 3 | Complete |
+| SWAP-03 | Phase 3 | Complete |
+| SWAP-04 | Phase 3 | Complete |
+| SWAP-05 | Phase 3 | Complete |
 | SWAP-06 | Phase 3 | Complete |
-| SWAP-07 | Phase 3 | Pending |
+| SWAP-07 | Phase 3 | Complete |
 | COMP-01 | Phase 3 | Complete |
 | COMP-02 | Phase 3 | Complete |
 | COMP-03 | Phase 3 | Complete |
