@@ -64,3 +64,23 @@ export const availability = pgTable("availability", {
   dayOfWeek: integer("day_of_week").notNull(), // 0 = Monday, 6 = Sunday
   isAvailable: boolean("is_available").notNull().default(true),
 })
+
+export const shiftStatusEnum = pgEnum("shift_status", ["assigned", "open"])
+
+export const shifts = pgTable("shifts", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  employeeId: integer("employee_id").references(() => users.id, {
+    onDelete: "cascade",
+  }), // nullable for open shifts
+  date: varchar({ length: 10 }).notNull(), // "2026-03-16" ISO date string
+  startTime: varchar("start_time", { length: 5 }).notNull(), // "09:00"
+  endTime: varchar("end_time", { length: 5 }).notNull(), // "15:00"
+  roleName: jobRoleEnum("role_name").notNull(),
+  breakMinutes: integer("break_minutes").notNull().default(0),
+  status: shiftStatusEnum().notNull().default("assigned"),
+  storeId: integer("store_id")
+    .notNull()
+    .references(() => stores.id),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+})
