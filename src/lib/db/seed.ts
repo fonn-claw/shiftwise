@@ -3,7 +3,8 @@ dotenv.config({ path: ".env.local" })
 
 import { drizzle } from "drizzle-orm/neon-http"
 import { neon } from "@neondatabase/serverless"
-import { stores, users, employeeRoles, availability } from "./schema"
+import { stores, users, employeeRoles, availability, shifts } from "./schema"
+import { addDays, startOfWeek, format } from "date-fns"
 import bcrypt from "bcryptjs"
 
 const sql = neon(process.env.DATABASE_URL!)
@@ -151,6 +152,7 @@ async function seed() {
 
   // Clear existing data in reverse FK order
   console.log("Clearing existing data...")
+  await db.delete(shifts)
   await db.delete(availability)
   await db.delete(employeeRoles)
   await db.delete(users)
@@ -207,9 +209,358 @@ async function seed() {
     }
   }
 
+  // 4. Seed shifts for current week
+  console.log("Creating shifts...")
+  const currentMonday = startOfWeek(new Date(), { weekStartsOn: 1 })
+  const dateStr = (dayOffset: number) =>
+    format(addDays(currentMonday, dayOffset), "yyyy-MM-dd")
+
+  // Look up user IDs by email
+  const allUsers = await db.select().from(users)
+  const userByEmail = (email: string) => {
+    const u = allUsers.find((u) => u.email === email)
+    if (!u) throw new Error(`User not found: ${email}`)
+    return u.id
+  }
+
+  const sarahId = userByEmail("manager@shiftwise.app")
+  const mikeId = userByEmail("supervisor@shiftwise.app")
+  const emmaId = userByEmail("employee@shiftwise.app")
+  const jakeId = userByEmail("jake.kim@shiftwise.app")
+  const anaId = userByEmail("ana.morales@shiftwise.app")
+  const carlosId = userByEmail("carlos.ruiz@shiftwise.app")
+  const priyaId = userByEmail("priya.patel@shiftwise.app")
+  const tomId = userByEmail("tom.liu@shiftwise.app")
+  const mayaId = userByEmail("maya.johnson@shiftwise.app")
+  const davidId = userByEmail("david.park@shiftwise.app")
+  const lisaId = userByEmail("lisa.chen@shiftwise.app")
+  const ryanId = userByEmail("ryan.obrien@shiftwise.app")
+
+  type ShiftSeed = {
+    employeeId: number | null
+    date: string
+    startTime: string
+    endTime: string
+    roleName: "cashier" | "stock" | "manager" | "visual_merch"
+    breakMinutes: number
+    status: "assigned" | "open"
+    storeId: number
+  }
+
+  const shiftData: ShiftSeed[] = [
+    // Sarah Chen (manager): Mon-Fri 9:00-17:00, manager, 30-min break = 7.5h x 5 = 37.5h
+    ...[0, 1, 2, 3, 4].map((d) => ({
+      employeeId: sarahId,
+      date: dateStr(d),
+      startTime: "09:00",
+      endTime: "17:00",
+      roleName: "manager" as const,
+      breakMinutes: 30,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+
+    // Mike Torres (supervisor): Mon-Fri 9:00-17:00, manager, 30-min break = 7.5h x 5 = 37.5h
+    ...[0, 1, 2, 3, 4].map((d) => ({
+      employeeId: mikeId,
+      date: dateStr(d),
+      startTime: "09:00",
+      endTime: "17:00",
+      roleName: "manager" as const,
+      breakMinutes: 30,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+
+    // Emma Wilson: Mon, Wed, Fri 9:00-15:00 cashier = 18h; Tue, Thu 15:00-21:00 cashier = 12h. Total 30h
+    ...[0, 2, 4].map((d) => ({
+      employeeId: emmaId,
+      date: dateStr(d),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "cashier" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+    ...[1, 3].map((d) => ({
+      employeeId: emmaId,
+      date: dateStr(d),
+      startTime: "15:00",
+      endTime: "21:00",
+      roleName: "cashier" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+
+    // Jake Kim: 38 hours total (near overtime)
+    // Tue 9:00-17:00 stock 30min = 7.5h
+    // Wed 9:00-17:00 stock 30min = 7.5h
+    // Thu 9:00-17:00 cashier 30min = 7.5h
+    // Fri 15:00-21:00 stock = 6h
+    // Sat 9:00-15:00 cashier = 6h
+    // Sun 15:00-18:30 stock = 3.5h
+    // Total = 7.5 + 7.5 + 7.5 + 6 + 6 + 3.5 = 38h
+    {
+      employeeId: jakeId,
+      date: dateStr(1),
+      startTime: "09:00",
+      endTime: "17:00",
+      roleName: "stock",
+      breakMinutes: 30,
+      status: "assigned",
+      storeId: store.id,
+    },
+    {
+      employeeId: jakeId,
+      date: dateStr(2),
+      startTime: "09:00",
+      endTime: "17:00",
+      roleName: "stock",
+      breakMinutes: 30,
+      status: "assigned",
+      storeId: store.id,
+    },
+    {
+      employeeId: jakeId,
+      date: dateStr(3),
+      startTime: "09:00",
+      endTime: "17:00",
+      roleName: "cashier",
+      breakMinutes: 30,
+      status: "assigned",
+      storeId: store.id,
+    },
+    {
+      employeeId: jakeId,
+      date: dateStr(4),
+      startTime: "15:00",
+      endTime: "21:00",
+      roleName: "stock",
+      breakMinutes: 0,
+      status: "assigned",
+      storeId: store.id,
+    },
+    {
+      employeeId: jakeId,
+      date: dateStr(5),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "cashier",
+      breakMinutes: 0,
+      status: "assigned",
+      storeId: store.id,
+    },
+    {
+      employeeId: jakeId,
+      date: dateStr(6),
+      startTime: "15:00",
+      endTime: "18:30",
+      roleName: "stock",
+      breakMinutes: 0,
+      status: "assigned",
+      storeId: store.id,
+    },
+
+    // Ana Morales: Mon-Thu 9:00-15:00 cashier = 24h
+    ...[0, 1, 2, 3].map((d) => ({
+      employeeId: anaId,
+      date: dateStr(d),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "cashier" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+
+    // Carlos Ruiz: Mon-Fri 15:00-21:00 stock = 30h, Sat 9:00-15:00 stock = 6h. Total 36h
+    ...[0, 1, 2, 3, 4].map((d) => ({
+      employeeId: carlosId,
+      date: dateStr(d),
+      startTime: "15:00",
+      endTime: "21:00",
+      roleName: "stock" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+    {
+      employeeId: carlosId,
+      date: dateStr(5),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "stock",
+      breakMinutes: 0,
+      status: "assigned",
+      storeId: store.id,
+    },
+
+    // Priya Patel: Wed-Fri 9:00-15:00 cashier = 18h, Sat-Sun 15:00-21:00 stock = 12h. Total 30h
+    ...[2, 3, 4].map((d) => ({
+      employeeId: priyaId,
+      date: dateStr(d),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "cashier" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+    ...[5, 6].map((d) => ({
+      employeeId: priyaId,
+      date: dateStr(d),
+      startTime: "15:00",
+      endTime: "21:00",
+      roleName: "stock" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+
+    // Tom Liu: Wed 15:00-21:00 cashier = 6h, Sat 9:00-15:00 = 6h, Sun 9:00-15:00 = 6h. Total 18h
+    {
+      employeeId: tomId,
+      date: dateStr(2),
+      startTime: "15:00",
+      endTime: "21:00",
+      roleName: "cashier",
+      breakMinutes: 0,
+      status: "assigned",
+      storeId: store.id,
+    },
+    {
+      employeeId: tomId,
+      date: dateStr(5),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "cashier",
+      breakMinutes: 0,
+      status: "assigned",
+      storeId: store.id,
+    },
+    {
+      employeeId: tomId,
+      date: dateStr(6),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "cashier",
+      breakMinutes: 0,
+      status: "assigned",
+      storeId: store.id,
+    },
+
+    // Maya Johnson: Mon-Fri 9:00-15:00 visual_merch = 30h
+    ...[0, 1, 2, 3, 4].map((d) => ({
+      employeeId: mayaId,
+      date: dateStr(d),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "visual_merch" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+
+    // David Park: Mon-Fri 15:00-21:00 stock = 30h, Sun 9:00-15:00 stock = 6h. Total 36h
+    ...[0, 1, 2, 3, 4].map((d) => ({
+      employeeId: davidId,
+      date: dateStr(d),
+      startTime: "15:00",
+      endTime: "21:00",
+      roleName: "stock" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+    {
+      employeeId: davidId,
+      date: dateStr(6),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "stock",
+      breakMinutes: 0,
+      status: "assigned",
+      storeId: store.id,
+    },
+
+    // Lisa Chen: Thu-Fri 15:00-21:00 cashier = 12h, Sat-Sun 9:00-15:00 cashier = 12h. Total 24h
+    ...[3, 4].map((d) => ({
+      employeeId: lisaId,
+      date: dateStr(d),
+      startTime: "15:00",
+      endTime: "21:00",
+      roleName: "cashier" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+    ...[5, 6].map((d) => ({
+      employeeId: lisaId,
+      date: dateStr(d),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "cashier" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+
+    // Ryan O'Brien: Mon-Wed 9:00-15:00 stock = 18h, Thu-Fri 9:00-15:00 visual_merch = 12h, Sat 9:00-15:00 stock = 6h. Total 36h
+    ...[0, 1, 2].map((d) => ({
+      employeeId: ryanId,
+      date: dateStr(d),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "stock" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+    ...[3, 4].map((d) => ({
+      employeeId: ryanId,
+      date: dateStr(d),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "visual_merch" as const,
+      breakMinutes: 0,
+      status: "assigned" as const,
+      storeId: store.id,
+    })),
+    {
+      employeeId: ryanId,
+      date: dateStr(5),
+      startTime: "09:00",
+      endTime: "15:00",
+      roleName: "stock",
+      breakMinutes: 0,
+      status: "assigned",
+      storeId: store.id,
+    },
+
+    // Open shift: Thursday 15:00-21:00 cashier, status "open"
+    {
+      employeeId: null,
+      date: dateStr(3),
+      startTime: "15:00",
+      endTime: "21:00",
+      roleName: "cashier",
+      breakMinutes: 0,
+      status: "open",
+      storeId: store.id,
+    },
+  ]
+
+  // Insert all shifts
+  for (const shift of shiftData) {
+    await db.insert(shifts).values(shift)
+  }
+
   console.log("Seed complete!")
   console.log(`  - 1 store: ${store.name}`)
   console.log(`  - ${employees.length} employees`)
+  console.log(`  - ${shiftData.length} shifts (${shiftData.filter((s) => s.status === "open").length} open)`)
   console.log("  - Demo accounts:")
   console.log("    manager@shiftwise.app / demo1234 (Sarah Chen - Manager)")
   console.log(
