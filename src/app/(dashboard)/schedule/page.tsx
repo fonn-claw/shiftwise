@@ -1,4 +1,5 @@
 import { startOfWeek, parseISO } from "date-fns"
+import { auth } from "@/lib/auth"
 import { getEmployees } from "@/lib/dal/employees"
 import { getShiftsForWeek } from "@/lib/dal/shifts"
 import { getStore } from "@/lib/dal/stores"
@@ -10,6 +11,7 @@ export default async function SchedulePage({
   searchParams: Promise<{ week?: string }>
 }) {
   const params = await searchParams
+  const session = await auth()
 
   const weekStart = params.week
     ? startOfWeek(parseISO(params.week), { weekStartsOn: 1 })
@@ -27,6 +29,7 @@ export default async function SchedulePage({
       initialShifts={shifts}
       store={store}
       weekStart={weekStart.toISOString()}
+      userRole={session?.user?.role ?? "employee"}
     />
   )
 }

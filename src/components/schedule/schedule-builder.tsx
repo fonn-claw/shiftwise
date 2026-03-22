@@ -3,19 +3,16 @@
 import { useState, useMemo, useCallback, useEffect } from "react"
 import { format, parseISO } from "date-fns"
 import { toast } from "sonner"
-import { ChevronLeft, ChevronRight, DollarSign } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { DollarSign } from "lucide-react"
 import { calculateWeekCosts } from "@/lib/utils/cost-calculator"
 import {
   getWeekDays,
-  formatWeekLabel,
-  getNextWeek,
-  getPrevWeek,
 } from "@/lib/utils/schedule-helpers"
 import {
   createShift,
   updateShift,
   deleteShift,
+  moveShift,
 } from "@/lib/actions/shifts"
 import { ScheduleGrid } from "./schedule-grid"
 import { CostMeterSidebar } from "./cost-meter-sidebar"
@@ -29,6 +26,7 @@ interface ScheduleBuilderProps {
   initialShifts: ShiftRow[]
   store: Store
   weekStart: string
+  userRole: string
 }
 
 export function ScheduleBuilder({
@@ -36,6 +34,7 @@ export function ScheduleBuilder({
   initialShifts,
   store,
   weekStart,
+  userRole,
 }: ScheduleBuilderProps) {
   const [shifts, setShifts] = useState<ShiftRow[]>(initialShifts)
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -43,6 +42,16 @@ export function ScheduleBuilder({
   const [prefilledDay, setPrefilledDay] = useState<string | null>(null)
   const [prefilledEmployeeId, setPrefilledEmployeeId] = useState<number | null>(null)
   const [mobileCostOpen, setMobileCostOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect mobile for disabling DnD
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)")
+    setIsMobile(mql.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mql.addEventListener("change", handler)
+    return () => mql.removeEventListener("change", handler)
+  }, [])
 
   // Reset shifts when week changes (navigation)
   useEffect(() => {
@@ -51,7 +60,6 @@ export function ScheduleBuilder({
 
   const weekStartDate = useMemo(() => parseISO(weekStart), [weekStart])
   const weekDays = useMemo(() => getWeekDays(weekStartDate), [weekStartDate])
-  const weekLabel = useMemo(() => formatWeekLabel(weekStartDate), [weekStartDate])
 
   const costs = useMemo(
     () =>
@@ -188,36 +196,33 @@ export function ScheduleBuilder({
     [shifts]
   )
 
-  const prevWeekStr = format(getPrevWeek(weekStartDate), "yyyy-MM-dd")
-  const nextWeekStr = format(getNextWeek(weekStartDate), "yyyy-MM-dd")
+  const handleShiftMove = useCallback(
+    async (shiftId: number, newEmployeeId: number, newDate: string) => {
+      // Save previous state for rollback
+      const previousShifts = shifts
+
+      // Optimistic update
+      setShifts((prev) =>
+        prev.map((s) =>
+          s.id === shiftId
+            ? { ...s, employeeId: newEmployeeId, date: newDate, updatedAt: new Date() }
+            : s
+        )
+      )
+
+      const result = await moveShift(shiftId, newEmployeeId, newDate)
+      if (!result.success) {
+        setShifts(previousShifts)
+        toast.error(result.message || "Failed to move shift")
+      }
+    },
+    [shifts]
+  )
+
+  const isManagerEnabled = userRole === "manager" && !isMobile
 
   return (
     <div className="space-y-4">
-      {/* Header with week navigation */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900">Schedule</h2>
-          <p className="text-sm text-gray-500">{store.name}</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <a
-            href={`/schedule?week=${prevWeekStr}`}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </a>
-          <span className="min-w-[200px] text-center text-sm font-medium text-gray-700">
-            {weekLabel}
-          </span>
-          <a
-            href={`/schedule?week=${nextWeekStr}`}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </a>
-        </div>
-      </div>
-
       {/* Mobile cost summary bar */}
       <div className="lg:hidden">
         <button
@@ -270,6 +275,8 @@ export function ScheduleBuilder({
             weekStart={weekStart}
             onCellClick={handleCellClick}
             onShiftClick={handleShiftClick}
+            onShiftMove={handleShiftMove}
+            isManager={isManagerEnabled}
           />
         </div>
 
