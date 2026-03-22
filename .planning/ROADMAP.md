@@ -66,7 +66,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Schema extensions (swap_requests, shift_pickups, audit_log), compliance rules + swap validation with tests, audit helper, seed data extension
+- [x] 03-01-PLAN.md — Schema extensions (swap_requests, shift_pickups, audit_log), compliance rules + swap validation with tests, audit helper, seed data extension
 - [ ] 03-02-PLAN.md — Swap/pickup DAL + server actions with auto-rejection, /swaps page UI with open shift board and swap request cards
 - [ ] 03-03-PLAN.md — Compliance DAL, /compliance page with status cards, premium pay calculator, and filterable audit log
 
@@ -94,5 +94,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Foundation and Employee Management | 3/3 | Complete | 2026-03-21 |
 | 2. Schedule Builder and Cost Meter | 3/3 | Complete | 2026-03-21 |
-| 3. Shift Swaps and Compliance | 0/3 | Not started | - |
+| 3. Shift Swaps and Compliance | 1/3 | In Progress | - |
 | 4. Dashboards and Polish | 0/2 | Not started | - |

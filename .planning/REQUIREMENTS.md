@@ -54,15 +54,15 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **SWAP-03**: Employee can request to pick up an open shift
 - [ ] **SWAP-04**: Employee can request a shift swap with another employee
 - [ ] **SWAP-05**: Manager/Supervisor can approve or reject swap requests with one click
-- [ ] **SWAP-06**: System auto-rejects swap if it would create overtime or coverage gap
+- [x] **SWAP-06**: System auto-rejects swap if it would create overtime or coverage gap
 - [ ] **SWAP-07**: Swap request shows details (who, what shifts, impact on hours)
 
 ### Compliance
 
 - [ ] **COMP-01**: Dashboard shows predictive scheduling compliance status
 - [ ] **COMP-02**: Warning displayed when schedule is posted less than required notice period (7/14 days configurable)
-- [ ] **COMP-03**: Premium pay calculator shows cost of last-minute schedule changes
-- [ ] **COMP-04**: Audit log records all schedule changes with timestamps and who made them
+- [x] **COMP-03**: Premium pay calculator shows cost of last-minute schedule changes
+- [x] **COMP-04**: Audit log records all schedule changes with timestamps and who made them
 
 ### Team Dashboard
 
@@ -76,8 +76,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **DEMO-02**: 12 employees seeded with roles, rates, max hours, and availability per BRIEF spec
 - [x] **DEMO-03**: Current week fully scheduled with realistic shift patterns
 - [x] **DEMO-04**: One employee (Jake) near overtime threshold (38 hrs)
-- [ ] **DEMO-05**: One open shift needing coverage (Thursday PM cashier)
-- [ ] **DEMO-06**: One pending swap request (Ana <-> Carlos, Friday)
+- [x] **DEMO-05**: One open shift needing coverage (Thursday PM cashier)
+- [x] **DEMO-06**: One pending swap request (Ana <-> Carlos, Friday)
 - [x] **DEMO-07**: Three demo accounts seeded (manager, supervisor, employee)
 
 ## v2 Requirements
@@ -148,12 +148,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SWAP-03 | Phase 3 | Pending |
 | SWAP-04 | Phase 3 | Pending |
 | SWAP-05 | Phase 3 | Pending |
-| SWAP-06 | Phase 3 | Pending |
+| SWAP-06 | Phase 3 | Complete |
 | SWAP-07 | Phase 3 | Pending |
 | COMP-01 | Phase 3 | Pending |
 | COMP-02 | Phase 3 | Pending |
-| COMP-03 | Phase 3 | Pending |
-| COMP-04 | Phase 3 | Pending |
+| COMP-03 | Phase 3 | Complete |
+| COMP-04 | Phase 3 | Complete |
 | DASH-01 | Phase 4 | Pending |
 | DASH-02 | Phase 4 | Pending |
 | DASH-03 | Phase 4 | Pending |
@@ -161,8 +161,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DEMO-02 | Phase 1 | Complete |
 | DEMO-03 | Phase 2 | Complete |
 | DEMO-04 | Phase 2 | Complete |
-| DEMO-05 | Phase 3 | Pending |
-| DEMO-06 | Phase 3 | Pending |
+| DEMO-05 | Phase 3 | Complete |
+| DEMO-06 | Phase 3 | Complete |
 | DEMO-07 | Phase 1 | Complete |
 
 **Coverage:**
