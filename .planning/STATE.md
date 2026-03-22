@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-03-22T00:16:03.233Z"
+stopped_at: Completed 02-03-PLAN.md
+last_updated: "2026-03-22T00:22:48.782Z"
 progress:
   total_phases: 4
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 6
-  completed_plans: 5
+  completed_plans: 6
 ---
 
 # Project State
@@ -50,6 +50,7 @@ Plan: 3 of 3
 | Phase 01 P03 | 6min | 2 tasks | 7 files |
 | Phase 02 P01 | 3min | 2 tasks | 9 files |
 | Phase 02 P02 | 5min | 2 tasks | 12 files |
+| Phase 02 P03 | 4min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,8 @@ Recent decisions affecting current work:
 - [Phase 02]: schedule-builder.tsx as single client state owner with shifts in useState, costs derived via useMemo
 - [Phase 02]: Optimistic mutations: update state immediately, call server action, rollback on failure
 - [Phase 02]: base-ui Select onValueChange needs null coalesce wrapper (differs from Radix API)
+- [Phase 02]: Used @dnd-kit/react v0.3.2 for drag-and-drop with DragDropProvider/useDraggable/useDroppable pattern
+- [Phase 02]: WeekNavigator uses router.push for URL-based week navigation, router.refresh after copy-week
 
 ### Pending Todos
 
@@ -86,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T00:15:57.583Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-03-22T00:22:48.779Z
+Stopped at: Completed 02-03-PLAN.md
 Resume file: None

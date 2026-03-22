@@ -30,11 +30,11 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **SCHED-02**: Manager can click to create a shift (start time, end time, role, break duration)
 - [x] **SCHED-03**: Manager can edit an existing shift
 - [x] **SCHED-04**: Manager can delete a shift
-- [ ] **SCHED-05**: Manager can drag-and-drop shifts to reassign to different employees or days
+- [x] **SCHED-05**: Manager can drag-and-drop shifts to reassign to different employees or days
 - [x] **SCHED-06**: Shifts are color-coded by role (cashier = blue, stock = green, manager = orange, visual merch = purple)
 - [x] **SCHED-07**: Schedule conflicts highlighted when employee is unavailable (red cell)
 - [x] **SCHED-08**: Manager can navigate between weeks
-- [ ] **SCHED-09**: Manager can copy previous week's schedule as starting point
+- [x] **SCHED-09**: Manager can copy previous week's schedule as starting point
 
 ### Labor Cost Meter
 
@@ -130,11 +130,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCHED-02 | Phase 2 | Complete |
 | SCHED-03 | Phase 2 | Complete |
 | SCHED-04 | Phase 2 | Complete |
-| SCHED-05 | Phase 2 | Pending |
+| SCHED-05 | Phase 2 | Complete |
 | SCHED-06 | Phase 2 | Complete |
 | SCHED-07 | Phase 2 | Complete |
 | SCHED-08 | Phase 2 | Complete |
-| SCHED-09 | Phase 2 | Pending |
+| SCHED-09 | Phase 2 | Complete |
 | COST-01 | Phase 2 | Complete |
 | COST-02 | Phase 2 | Complete |
 | COST-03 | Phase 2 | Complete |
