@@ -66,6 +66,7 @@ export function WeekNavigator({
             size="icon"
             className="h-8 w-8"
             onClick={() => navigateTo(prevWeek)}
+            data-testid="schedule-prev-week-btn"
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
@@ -77,6 +78,7 @@ export function WeekNavigator({
             size="icon"
             className="h-8 w-8"
             onClick={() => navigateTo(nextWeek)}
+            data-testid="schedule-next-week-btn"
           >
             <ChevronRight className="h-4 w-4" />
           </Button>

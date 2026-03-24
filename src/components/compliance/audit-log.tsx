@@ -138,7 +138,7 @@ export function AuditLog({ initialEntries, totalCount }: AuditLogProps) {
             value={actionFilter}
             onValueChange={(v) => setActionFilter(v ?? "all")}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px]" data-testid="compliance-log-filter">
               <SelectValue placeholder="All Actions" />
             </SelectTrigger>
             <SelectContent>

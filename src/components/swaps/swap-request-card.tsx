@@ -167,6 +167,7 @@ export function SwapRequestCard({
                   className="bg-green-600 hover:bg-green-700"
                   onClick={() => onApprove(swap.id)}
                   disabled={isPending}
+                  data-testid="swap-approve-btn"
                 >
                   Approve
                 </Button>
@@ -175,6 +176,7 @@ export function SwapRequestCard({
                   variant="destructive"
                   onClick={() => onReject(swap.id)}
                   disabled={isPending}
+                  data-testid="swap-reject-btn"
                 >
                   Reject
                 </Button>

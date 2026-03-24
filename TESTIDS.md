@@ -16,3 +16,12 @@ Used for automation, demo recording, and end-to-end testing.
 | employee-submit-btn | Create/Update Employee submit | Employee panel |
 | copy-prev-week-btn | Copy Previous Week button | /schedule |
 | copy-schedule-confirm-btn | Confirm copy dialog button | /schedule |
+| schedule-prev-week-btn | Previous week nav button | /schedule |
+| schedule-next-week-btn | Next week nav button | /schedule |
+| schedule-per-employee-toggle | Per-Employee Hours expand/collapse | /schedule sidebar |
+| shift-card | Individual shift card in grid | /schedule |
+| swap-approve-btn | Approve swap request button | /swaps |
+| swap-reject-btn | Reject swap request button | /swaps |
+| swap-filter-pending | Pending filter tab | /swaps |
+| swap-filter-all | All filter tab | /swaps |
+| compliance-log-filter | Audit log action filter dropdown | /compliance |

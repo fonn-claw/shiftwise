@@ -26,6 +26,7 @@ export function ShiftCard({ shift, onClick, isManager = false }: ShiftCardProps)
     <button
       ref={ref}
       type="button"
+      data-testid="shift-card"
       onClick={(e) => {
         e.stopPropagation()
         if (!isDragSource) {

@@ -41,6 +41,7 @@ export function EmployeeHoursList({
         type="button"
         onClick={() => setExpanded(!expanded)}
         className="flex w-full items-center justify-between py-1"
+        data-testid="schedule-per-employee-toggle"
       >
         <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-500">
           Per-Employee Hours

@@ -206,6 +206,7 @@ export function SwapsPageClient({
             <button
               type="button"
               onClick={() => setActiveTab("pending")}
+              data-testid="swap-filter-pending"
               className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
                 activeTab === "pending"
                   ? "bg-white text-gray-900 shadow-sm"
@@ -217,6 +218,7 @@ export function SwapsPageClient({
             <button
               type="button"
               onClick={() => setActiveTab("all")}
+              data-testid="swap-filter-all"
               className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
                 activeTab === "all"
                   ? "bg-white text-gray-900 shadow-sm"
