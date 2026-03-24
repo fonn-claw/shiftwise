@@ -112,6 +112,7 @@ export function EmployeePanel({ open, onOpenChange, employee, userRole }: Employ
               required
               defaultValue={employee?.name ?? ""}
               placeholder="Full name"
+              data-testid="employee-name-input"
             />
             {errors.name && (
               <p className="text-xs text-red-600">{errors.name[0]}</p>
@@ -128,6 +129,7 @@ export function EmployeePanel({ open, onOpenChange, employee, userRole }: Employ
               required
               defaultValue={employee?.email ?? ""}
               placeholder="employee@example.com"
+              data-testid="employee-email-input"
             />
             {errors.email && (
               <p className="text-xs text-red-600">{errors.email[0]}</p>
@@ -165,6 +167,7 @@ export function EmployeePanel({ open, onOpenChange, employee, userRole }: Employ
                   <button
                     key={role}
                     type="button"
+                    data-testid={"role-btn-" + role}
                     onClick={() => toggleJobRole(role)}
                     className={cn(
                       "rounded-full border px-3 py-1 text-xs font-medium transition-colors",
@@ -200,6 +203,7 @@ export function EmployeePanel({ open, onOpenChange, employee, userRole }: Employ
                 defaultValue={employee?.hourlyRate ?? ""}
                 className="pl-7"
                 placeholder="15.00"
+                data-testid="employee-rate-input"
               />
             </div>
             {errors.hourlyRate && (
@@ -219,6 +223,7 @@ export function EmployeePanel({ open, onOpenChange, employee, userRole }: Employ
               required
               defaultValue={employee?.maxHoursPerWeek ?? ""}
               placeholder="40"
+              data-testid="employee-hours-input"
             />
             {errors.maxHoursPerWeek && (
               <p className="text-xs text-red-600">{errors.maxHoursPerWeek[0]}</p>
@@ -254,6 +259,7 @@ export function EmployeePanel({ open, onOpenChange, employee, userRole }: Employ
               type="submit"
               disabled={isPending}
               className="w-full bg-indigo-600 hover:bg-indigo-700 text-white"
+              data-testid="employee-submit-btn"
             >
               {isPending
                 ? "Saving..."

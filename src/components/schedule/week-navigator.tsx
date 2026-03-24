@@ -87,6 +87,7 @@ export function WeekNavigator({
               size="sm"
               className="ml-2 gap-1.5"
               onClick={() => setShowCopyDialog(true)}
+              data-testid="copy-prev-week-btn"
             >
               <Copy className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Copy Previous Week</span>
@@ -112,7 +113,7 @@ export function WeekNavigator({
             >
               Cancel
             </Button>
-            <Button onClick={handleCopy} disabled={isCopying}>
+            <Button onClick={handleCopy} disabled={isCopying} data-testid="copy-schedule-confirm-btn">
               {isCopying ? "Copying..." : "Copy Schedule"}
             </Button>
           </DialogFooter>

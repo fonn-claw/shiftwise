@@ -161,6 +161,7 @@ export function EmployeeTable({ employees, userRole, currentUserId }: EmployeeTa
             <Button
               onClick={handleAddNew}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
+              data-testid="add-employee-btn"
             >
               <Plus className="mr-2 h-4 w-4" />
               Add Employee
@@ -187,6 +188,7 @@ export function EmployeeTable({ employees, userRole, currentUserId }: EmployeeTa
           <Button
             onClick={handleAddNew}
             className="bg-indigo-600 hover:bg-indigo-700 text-white"
+            data-testid="add-employee-btn"
           >
             <Plus className="mr-2 h-4 w-4" />
             Add Employee
