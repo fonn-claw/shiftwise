@@ -10,7 +10,12 @@ export default async function EmployeesPage() {
   const session = await auth()
   if (!session?.user) redirect("/login")
 
-  const employees = await getEmployees()
+  let employees: Awaited<ReturnType<typeof getEmployees>> = []
+  try {
+    employees = await getEmployees()
+  } catch {
+    // Fallback to empty list if query fails
+  }
   const { role, id } = session.user
 
   // Employee self-view: show own profile card with editable availability

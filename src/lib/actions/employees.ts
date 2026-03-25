@@ -61,19 +61,29 @@ export async function createEmployee(formData: FormData): Promise<ActionResult> 
 
   const passwordHash = await bcrypt.hash("changeme123", 10)
 
-  const [newUser] = await db
-    .insert(users)
-    .values({
-      name,
-      email,
-      passwordHash,
-      role,
-      hourlyRate: String(hourlyRate),
-      maxHoursPerWeek,
-      phone: phone ?? null,
-      storeId: 1,
-    })
-    .returning({ id: users.id })
+  let newUser: { id: number }
+  try {
+    const [inserted] = await db
+      .insert(users)
+      .values({
+        name,
+        email,
+        passwordHash,
+        role,
+        hourlyRate: String(hourlyRate),
+        maxHoursPerWeek,
+        phone: phone ?? null,
+        storeId: 1,
+      })
+      .returning({ id: users.id })
+    newUser = inserted
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : ""
+    if (msg.includes("unique") || msg.includes("duplicate") || msg.includes("violates")) {
+      return { success: false, errors: { email: ["An employee with this email already exists"] } }
+    }
+    return { success: false, message: "Failed to create employee" }
+  }
 
   // Insert job roles
   for (const roleName of jobRoles) {
@@ -127,26 +137,34 @@ export async function updateEmployee(formData: FormData): Promise<ActionResult> 
 
   const { id, name, email, role, hourlyRate, maxHoursPerWeek, phone, jobRoles } = parsed.data
 
-  await db
-    .update(users)
-    .set({
-      name,
-      email,
-      role,
-      hourlyRate: String(hourlyRate),
-      maxHoursPerWeek,
-      phone: phone ?? null,
-      updatedAt: new Date(),
-    })
-    .where(eq(users.id, id))
+  try {
+    await db
+      .update(users)
+      .set({
+        name,
+        email,
+        role,
+        hourlyRate: String(hourlyRate),
+        maxHoursPerWeek,
+        phone: phone ?? null,
+        updatedAt: new Date(),
+      })
+      .where(eq(users.id, id))
 
-  // Replace job roles
-  await db.delete(employeeRoles).where(eq(employeeRoles.userId, id))
-  for (const roleName of jobRoles) {
-    await db.insert(employeeRoles).values({
-      userId: id,
-      roleName,
-    })
+    // Replace job roles
+    await db.delete(employeeRoles).where(eq(employeeRoles.userId, id))
+    for (const roleName of jobRoles) {
+      await db.insert(employeeRoles).values({
+        userId: id,
+        roleName,
+      })
+    }
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : ""
+    if (msg.includes("unique") || msg.includes("duplicate") || msg.includes("violates")) {
+      return { success: false, errors: { email: ["An employee with this email already exists"] } }
+    }
+    return { success: false, message: "Failed to update employee" }
   }
 
   revalidatePath("/employees")

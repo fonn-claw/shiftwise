@@ -13,34 +13,41 @@ export default async function SwapsPage() {
   const session = await auth()
   if (!session?.user) redirect("/login")
 
-  const [openShifts, swapRequests, pickupRequests] = await Promise.all([
-    getOpenShifts(),
-    getSwapRequests(),
-    getPickupRequests(),
-  ])
-
-  // Compute week hours for employees involved in swaps (for hours impact display)
-  const employeeIds = new Set<number>()
-  for (const swap of swapRequests) {
-    employeeIds.add(swap.requestor.id)
-    employeeIds.add(swap.targetEmployee.id)
-  }
-
+  let openShifts: Awaited<ReturnType<typeof getOpenShifts>> = []
+  let swapRequests: Awaited<ReturnType<typeof getSwapRequests>> = []
+  let pickupRequests: Awaited<ReturnType<typeof getPickupRequests>> = []
   const employeeWeekHours: Record<number, number> = {}
 
-  // Use the first swap's shift date as week reference; fallback to today
-  const refDate =
-    swapRequests.length > 0
-      ? swapRequests[0].requestorShift.date
-      : new Date().toISOString().slice(0, 10)
+  try {
+    ;[openShifts, swapRequests, pickupRequests] = await Promise.all([
+      getOpenShifts(),
+      getSwapRequests(),
+      getPickupRequests(),
+    ])
 
-  for (const empId of employeeIds) {
-    const weekShifts = await getEmployeeWeekShifts(empId, refDate)
-    employeeWeekHours[empId] = weekShifts.reduce(
-      (sum, s) =>
-        sum + calculateShiftHours(s.startTime, s.endTime, s.breakMinutes),
-      0
-    )
+    // Compute week hours for employees involved in swaps (for hours impact display)
+    const employeeIds = new Set<number>()
+    for (const swap of swapRequests) {
+      employeeIds.add(swap.requestor.id)
+      employeeIds.add(swap.targetEmployee.id)
+    }
+
+    // Use the first swap's shift date as week reference; fallback to today
+    const refDate =
+      swapRequests.length > 0
+        ? swapRequests[0].requestorShift.date
+        : new Date().toISOString().slice(0, 10)
+
+    for (const empId of employeeIds) {
+      const weekShifts = await getEmployeeWeekShifts(empId, refDate)
+      employeeWeekHours[empId] = weekShifts.reduce(
+        (sum, s) =>
+          sum + calculateShiftHours(s.startTime, s.endTime, s.breakMinutes),
+        0
+      )
+    }
+  } catch {
+    // Fallback to empty data if queries fail — page still renders
   }
 
   return (
